@@ -28,20 +28,11 @@ using System.Collections.Generic;
 using IBM.Watson.DeveloperCloud.Connection;
 using System.Runtime.InteropServices;
 using SimpleJSON;
+
 //Avishek code
 using System.IO;
 using UnityEngine.UI;
 using System;
-
-[StructLayout(LayoutKind.Explicit)]
-public struct Color32Array
-{
-	[FieldOffset(0)]
-	public byte[] byteArray;
-
-	[FieldOffset(0)]
-	public Color32[] colors;
-}
 //Avishek code end
 
 public class ExampleVisualRecognition : MonoBehaviour
@@ -252,15 +243,7 @@ public class ExampleVisualRecognition : MonoBehaviour
 		string res = customData ["json"].ToString() ;
 		var N = JSON.Parse (res);
 		var classes = N ["images"] [0] ["classifiers"] [0] ["classes"];
-		int i;
-		string ans = "" ;
-		double mx = 0.3;
-		for(i = 0; i < classes.Count ; i++) {
-			if (classes [i] ["score"] > mx) {
-				mx = classes [i] ["score"];
-				ans = classes [i] ["class"];
-			}
-		}
+		string ans = classes [0] ["class"];
 		ObjectText.text = ans ;
 		//Avishek end
 

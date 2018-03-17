@@ -152,9 +152,10 @@ b1e7ba3e8f0547db898f8e7a8217d391 Assembly-CSharp.dll:IBM.Watson.DeveloperCloud.E
 fc662c85e0721e10aff011bb04caf5d4 Assembly-CSharp.dll:.ExampleStreamingSplitSamples
 9b6a445e49e215ae7736dee9f2fe5161 Assembly-CSharp.dll:.botController
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ExampleToneAnalyzer
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ExampleVisualRecognition
+b052063d479bd4b9dc0e6740d4b43b38 Assembly-CSharp.dll:.ExampleVisualRecognition
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Vuforia.HideExcessAreaBehaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:IBM.Watson.DeveloperCloud.Utilities.Runnable
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.visualRecognition
 387ef655a40a5a09b4b289e4961f5583 Assembly-CSharp.dll:Vuforia.CylinderTargetBehaviour
 67b48974ce9eba2f5f42615d194258b7 Assembly-CSharp.dll:Vuforia.MaskOutBehaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ExamplePersonalityInsights

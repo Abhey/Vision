@@ -22,14 +22,24 @@ using IBM.Watson.DeveloperCloud.Logging;
 using System.Collections;
 using IBM.Watson.DeveloperCloud.Connection;
 using System.Collections.Generic;
+using SimpleJSON;
+using UnityEngine.UI;
 
 public class ExampleLanguageTranslator : MonoBehaviour
 {
-    private string _pharseToTranslate = "Hello, welcome to IBM Watson!";
+	/*
+	{
+	  "url": "https://gateway.watsonplatform.net/language-translator/api",
+	  "username": "a325c2ef-f7b6-4afe-baf9-8ccfdcf8b6f5",
+	  "password": "4m2KEKPBrrDE"
+	}
+	*/
+
+    private string _pharseToTranslate = "girl";
     private string _pharseToIdentify = "Hola, donde esta la bibliteca?";
-    private string _username = null;
-    private string _password = null;
-    private string _url = null;
+	private string _username = "a325c2ef-f7b6-4afe-baf9-8ccfdcf8b6f5";
+	private string _password = "4m2KEKPBrrDE";
+	private string _url = "https://gateway.watsonplatform.net/language-translator/api";
 
     private LanguageTranslator _languageTranslator;
     private string _baseModelName = "en-es";
@@ -45,16 +55,13 @@ public class ExampleLanguageTranslator : MonoBehaviour
     private bool _identifyTested = false;
     private bool _getLanguagesTested = false;
 
+	public Text TranslatedText;
     void Start()
     {
         LogSystem.InstallDefaultReactors();
-
-        //  Create credential and instantiate service
-        Credentials credentials = new Credentials(_username, _password, _url);
-
+		Credentials credentials = new Credentials(_username, _password, _url);
         _languageTranslator = new LanguageTranslator(credentials);
         _forcedGlossaryFilePath = Application.dataPath + "/Watson/Examples/ServiceExamples/TestData/glossary.tmx";
-
         Runnable.Run(Examples());
     }
 
@@ -64,7 +71,7 @@ public class ExampleLanguageTranslator : MonoBehaviour
             Log.Debug("ExampleLanguageTranslator.GetTranslation()", "Failed to translate.");
         while (!_getTranslationTested)
             yield return null;
-
+		/*
         if (!_languageTranslator.GetModels(OnGetModels, OnFail))
             Log.Debug("ExampleLanguageTranslator.GetModels()", "Failed to get models.");
         while (!_getModelsTested)
@@ -94,7 +101,7 @@ public class ExampleLanguageTranslator : MonoBehaviour
             Log.Debug("ExampleLanguageTranslator.GetLanguages()", "Failed to get languages.");
         while (!_getLanguagesTested)
             yield return null;
-
+		*/
         Log.Debug("ExampleLanguageTranslator.Examples()", "Language Translator examples complete.");
     }
 
@@ -128,6 +135,11 @@ public class ExampleLanguageTranslator : MonoBehaviour
     {
         Log.Debug("ExampleLanguageTranslator.OnGetTranslation()", "Langauge Translator - Translate Response: {0}", customData["json"].ToString());
         _getTranslationTested = true;
+
+		string res = customData ["json"].ToString() ;
+		var N = JSON.Parse (res);
+		string ans = N ["translations"] [0] ["translation"];
+		TranslatedText.text = ans ;
     }
 
     private void OnIdentify(IdentifiedLanguages identifiedLanguages, Dictionary<string, object> customData)
