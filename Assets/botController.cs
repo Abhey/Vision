@@ -164,6 +164,12 @@ public class botController : MonoBehaviour {
 		return distanceFloat;
 	}
 
+	//To detect image and translate
+	public void detectImage()
+	{
+		//StartCoroutine (ExampleVisualRecognition.TakePhoto ());	
+
+	}
 	public void controller( string s ) {
 		//File.Delete (Application.persistentDataPath + "/newToDoList.dat");
 		//Ye ExampleStreaming se string leta hai aur uske upar kaam karta hai
@@ -175,9 +181,13 @@ public class botController : MonoBehaviour {
 			StartCoroutine ("save");
 			debugText.text = "Added to to-do list" ; 
 		}
-		else if ( string.Compare( s , "news" ) == 0 ) {
+		else if ( s.Contains("news") ) {
 			getNews( ) ;
 		} 
+		else if( s.Contains("check") )
+		{
+			detectImage ();
+		}
 		else {
 			Debug.Log (s);
 		}

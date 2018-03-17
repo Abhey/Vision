@@ -27,11 +27,11 @@ using IBM.Watson.DeveloperCloud.Utilities;
 using System.Collections.Generic;
 using IBM.Watson.DeveloperCloud.Connection;
 using System.Runtime.InteropServices;
-
+using SimpleJSON;
 //Avishek code
 using System.IO;
 using UnityEngine.UI;
-
+using System;
 
 [StructLayout(LayoutKind.Explicit)]
 public struct Color32Array
@@ -53,6 +53,9 @@ public class ExampleVisualRecognition : MonoBehaviour
 		"note": "It may take up to 5 minutes for this key to become active",
 		"api_key": "c5df3c97d2876236f153bc90b911298420ffbfbe"
 	*/
+	public Text ObjectText;
+	public GameObject g1;
+	public GameObject g2;
 
 	//Avishek code end
 	private string _apikey = "c5df3c97d2876236f153bc90b911298420ffbfbe";
@@ -126,7 +129,7 @@ public class ExampleVisualRecognition : MonoBehaviour
         while (!_getClassifierTested)
             yield return null;
 #endif
-
+		/*
 		//          Classify get
         Log.Debug("ExampleVisualRecognition.Examples()", "Attempting to get classify via URL");
         if (!_visualRecognition.Classify(_imageURL, OnClassifyGet, OnFail))
@@ -159,7 +162,7 @@ public class ExampleVisualRecognition : MonoBehaviour
         string faceExamplePath = Application.dataPath + "/Watson/Examples/ServiceExamples/TestData/visual-recognition-classifiers/obama.jpg";
         if (!_visualRecognition.DetectFaces(OnDetectFacesPost, OnFail, faceExamplePath))
             Log.Debug("ExampleVisualRecognition.DetectFaces()", "Detect faces failed!");
-
+		*/
 		//Avishek Code
 
 		//Take image from webcam and display results 
@@ -209,7 +212,6 @@ public class ExampleVisualRecognition : MonoBehaviour
     private void OnGetClassifiers(GetClassifiersTopLevelBrief classifiers, Dictionary<string, object> customData)
     {
         Log.Debug("ExampleVisualRecognition.OnGetClassifiers()", "VisualRecognition - GetClassifiers Response: {0}", customData["json"].ToString());
-
         _getClassifiersTested = true;
     }
 
@@ -245,7 +247,24 @@ public class ExampleVisualRecognition : MonoBehaviour
     private void OnClassifyGet(ClassifyTopLevelMultiple classify, Dictionary<string, object> customData)
     {
         Log.Debug("ExampleVisualRecognition.OnClassifyGet()", "{0}", customData["json"].ToString());
-        _classifyGetTested = true;
+
+		//Avishek code
+		string res = customData ["json"].ToString() ;
+		var N = JSON.Parse (res);
+		var classes = N ["images"] [0] ["classifiers"] [0] ["classes"];
+		int i;
+		string ans = "" ;
+		double mx = 0.3;
+		for(i = 0; i < classes.Count ; i++) {
+			if (classes [i] ["score"] > mx) {
+				mx = classes [i] ["score"];
+				ans = classes [i] ["class"];
+			}
+		}
+		ObjectText.text = ans ;
+		//Avishek end
+
+		_classifyGetTested = true;
     }
 
     private void OnClassifyPost(ClassifyTopLevelMultiple classify, Dictionary<string, object> customData)
@@ -288,31 +307,29 @@ public class ExampleVisualRecognition : MonoBehaviour
 
 	public IEnumerator TakePhoto()
 	{
+		g1.SetActive (false);
+		g2.SetActive (false);
 		string filePath;
-		//on mobile platforms persistentDataPath is already prepended to file name when using CaptureScreenshot()
 		if (Application.isMobilePlatform) {
 
 			filePath = Application.persistentDataPath + "/image.png";
 			ScreenCapture.CaptureScreenshot ("/image.png");
-			//must delay here so picture has time to save unfortunatly
 			yield return new WaitForSeconds(1.5f);
-			//Encode to a PNG
 			imageByteArray = File.ReadAllBytes(filePath);
 
 		} else {
 
 			filePath = Application.dataPath + "/StreamingAssets/" + "image.png";
 			ScreenCapture.CaptureScreenshot (filePath);
-			//must delay here so picture has time to save unfortunatly
 			yield return new WaitForSeconds(1.5f);
-			//Encode to a PNG
 			imageByteArray = File.ReadAllBytes(filePath);
 		}
+		g1.SetActive (true);
+		g2.SetActive (true);
+
 		Log.Debug("ExampleVisualRecognition.Examples()", "Attempting to get classify by webcam.");
 		if (!_visualRecognition.Classify(OnClassifyGet, OnFail , imageByteArray , "image/png"))
 			Log.Debug("ExampleVisualRecognition", "Classify image failed!");
 		
 	}
 }
-
-
