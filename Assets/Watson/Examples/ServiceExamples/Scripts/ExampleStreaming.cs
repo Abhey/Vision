@@ -49,6 +49,7 @@ public class ExampleStreaming : MonoBehaviour
 
     void Start()
     {
+		/*
         LogSystem.InstallDefaultReactors();
 		//  Create credential and instantiate service
         Credentials credentials = new Credentials(_username, _password, _url);
@@ -57,6 +58,7 @@ public class ExampleStreaming : MonoBehaviour
         Active = true;
 
         StartRecording();
+        */
     }
 
     public bool Active

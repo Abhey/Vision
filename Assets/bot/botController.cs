@@ -43,35 +43,63 @@ public class botController : MonoBehaviour {
 		yield return req;
 		Debug.Log (req.text);
 	}
-	/*public void save( string s ) {
-		//Add the string to the to-do list
-		toDoList res ;
-		FileStream file;
-		BinaryFormatter bf;
-		if (File.Exists (Application.persistentDataPath + "/toDoList.dat")) {
-			bf = new BinaryFormatter ();
-			file = File.Open (Application.persistentDataPath + "/toDoList.dat", FileMode.Open);
-			res = (toDoList)bf.Deserialize (file);
-			file.Close ();
-		} 
-		else {
-			bf = new BinaryFormatter();
-			file = File.Create (Application.persistentDataPath + "/toDoList.dat" ); 
-			res = new toDoList () ;
-			res.val = "To-Do List\n";
-			res.number = 0;
-			bf.Serialize (file, res);
-			file.Close ();
+	/*
+	//Online geo-tag
+	IEnumerator put()
+	{
+		//Code to get location
+		Input.location.Start ();
+		int maxWait = 20;
+		while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0) {
+			yield return new WaitForSeconds (1);
+			maxWait--;
 		}
-		bf = new BinaryFormatter();
-		file = File.Create (Application.persistentDataPath + "/toDoList.dat" ); 
-		int number = res.number + 1 ;
-		res.val = res.val + number.ToString () + ". " + s + "\n" ;
-		res.number = number;
-		listObj.text = res.val;
-		bf.Serialize (file, res);
-		file.Close ();
+		lat = Input.location.lastData.latitude;
+		lon = Input.location.lastData.longitude;
+		gpsText.text = lat.ToString () + " " + lon.ToString (); 
+		Input.location.Stop();
+
+		//Code to add to list
+		toDoList res ;
+		res.lat = res.lat + lat.ToString() + "~" ;
+		res.lon = res.lon + lon.ToString() + "~" ;
+		res.val = res.val + s1 + "~" ;
+		res.number = res.number + 1;
+		//Store to APi
+	}
+	IEnumerator display()
+	{
+		//Code to get location
+		Input.location.Start ();
+		int maxWait = 20;
+		while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0) {
+			yield return new WaitForSeconds (1);
+			maxWait--;
+		}
+		lat = Input.location.lastData.latitude;
+		lon = Input.location.lastData.longitude;
+		gpsText.text = lat.ToString () + " " + lon.ToString (); 
+		Input.location.Stop();
+		FirebaseStorage storage = FirebaseStorage.DefaultInstance;
+
+		//Display to-do here.
+		string ans = "Online to-Do at this location\n" ;
+		toDoList res = null; //data from API
+		string[] lats = res.lat.Split ('~');
+		string[] lons = res.lon.Split ('~');
+		string[] vals = res.val.Split ('~');
+		int i;
+		for (i = 0; i < res.number; i++) {
+			float lat2 = float.Parse( lats[i] , CultureInfo.InvariantCulture.NumberFormat);
+			float lon2 = float.Parse( lons[i] , CultureInfo.InvariantCulture.NumberFormat);
+			float dis = Calc( lat , lon , lat2 , lon2 ) ;
+			ans = ans + lats [i] + " " + lons [i] + " " + vals [i] + " " + dis.ToString() + "\n" ;
+		}
+			
+		debugText.text = ans;
 	}*/
+	//Online geo-tag end
+
 
 	IEnumerator save()
 	{
@@ -116,7 +144,7 @@ public class botController : MonoBehaviour {
 		bf.Serialize (file, res);
 		file.Close ();
 	}
-	IEnumerator display()
+	IEnumerator list()
 	{
 		//Code to get location
 		Input.location.Start ();
@@ -266,20 +294,34 @@ public class botController : MonoBehaviour {
 	public void controller( string s ) {
 		//File.Delete (Application.persistentDataPath + "/newToDoList.dat");
 		//Ye ExampleStreaming se string leta hai aur uske upar kaam karta hai
-		if ( s.Contains ("list")) {
-			StartCoroutine ("display");
+
+		if (s.Contains ("list")) {
+			//Offline Display
+			StartCoroutine ("list");
 		} 
 		else if (s.Contains ("add")) {
+			//Offline add
 			s1 = s;
 			StartCoroutine ("save");
-			debugText.text = "Added to to-do list" ; 
-		}
-		else if ( s.Contains("news") ) {
-			getNews( ) ;
+			debugText.text = "Added to to-do list"; 
 		} 
-		else if( s.Contains("check") )
-		{
+		else if (s.Contains ("news")) {
+			//News
+			getNews ();
+		} 
+		else if (s.Contains ("check")) {
+			//Image recog
 			check ();
+		} 
+		else if (s.Contains ("put")) {
+			//Online Save
+			s1 = s;
+			StartCoroutine ("put");
+			debugText.text = "Added to online to-do list";
+		} 
+		else if (s.Contains ("display")) {
+			//Online display
+			StartCoroutine ("display");
 		}
 		else {
 			Debug.Log (s);

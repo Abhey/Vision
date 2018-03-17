@@ -2,7 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/bot/botController.cs">
     <Files>
-      <File FileName="Assets/bot/botController.cs" Line="187" Column="41" />
+      <File FileName="Assets/bot/botController.cs" Line="10" Column="14" />
+      <File FileName="Assets/PlaySound.cs" Line="20" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

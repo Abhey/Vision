@@ -54,7 +54,14 @@
      <Compile Include="Assets\3DTOYS\rotatecamera.cs" />
      <Compile Include="Assets\bot\animationController.cs" />
      <Compile Include="Assets\bot\botController.cs" />
+     <Compile Include="Assets\capture.cs" />
+     <Compile Include="Assets\clearToDo.cs" />
+     <Compile Include="Assets\geo.cs" />
+     <Compile Include="Assets\geoShow.cs" />
+     <Compile Include="Assets\PlaySound.cs" />
      <Compile Include="Assets\SimpleJSON.cs" />
+     <Compile Include="Assets\todo.cs" />
+     <Compile Include="Assets\todoShow.cs" />
      <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CloudRecoBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CylinderTargetBehaviour.cs" />
