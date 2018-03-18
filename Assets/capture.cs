@@ -13,6 +13,8 @@ using System.IO;
 
 public class capture : MonoBehaviour {
 	public UnityEngine.UI.Button b;
+	string toSpeak = "The object is.\n" ;
+	public textToSpeechVision tts;
 	// Use this for initialization
 	void Start () {
 		UnityEngine.UI.Button btn = b.GetComponent<UnityEngine.UI.Button> ();
@@ -46,7 +48,23 @@ public class capture : MonoBehaviour {
 		var classes = N ["images"] [0] ["classifiers"] [0] ["classes"];
 		string ans = classes [0] ["class"];
 		ObjectText.text = ans ;
+		toSpeak = toSpeak + ans + "\n";
 		translate ();
+		getDescription (ans);
+	}
+
+	void getDescription(string str) {
+		string url = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=1&explaintext=1&titles=" + str + "&continue=&format=json&formatversion=2" ;
+		WWW request = new WWW (url);
+		StartCoroutine (OnResponse (request));
+	}
+	
+	private IEnumerator OnResponse( WWW req ) {
+		yield return req;
+		string data = req.text.ToString() ;
+		var json = JSON.Parse (data);
+		Debug.Log (json.ToString ());
+		Debug.Log( json["query"]["pages"][0]["extract"].ToString() ) ;
 	}
 
 	private void OnFail(RESTConnector.Error error, Dictionary<string, object> customData)
@@ -103,6 +121,8 @@ public class capture : MonoBehaviour {
 		var N = JSON.Parse (res);
 		string ans = N ["translations"] [0] ["translation"];
 		TranslatedText.text = ans ;
+		toSpeak = toSpeak + "And its translation in spanish is.\n" + ans + "\n";
+		tts.convert (toSpeak);
 	}
 
 	private IEnumerator trans()

@@ -14,6 +14,7 @@ public class geoShow : MonoBehaviour {
 	public Text ans;
 	float lat1, lon1;
 	public Text gpsText;
+	public textToSpeechVision tts;
 	DependencyStatus dependencyStatus = DependencyStatus.UnavailableOther;
 	// Use this for initialization
 	void Start () {
@@ -69,15 +70,22 @@ public class geoShow : MonoBehaviour {
 					string res = snapshot.GetRawJsonValue().ToString() ;
 					var N = JSON.Parse (res);
 					var rows = N ["Rows"].Children ;
+					string toSpeak = "Some global reviews at this location.\n" ;
 					string finalAns = "Global Reviews.\n" ;
+					int j = 1 ;
 					foreach( var row in rows )
 					{
-						//Debug.Log( row ) ;
 						float lat2 = row["lat"] , lon2 = row["lon"] ;
 						double dis = Calc( lat1 , lon1 , lat2 , lon2 ) ;
 						finalAns = finalAns + row["lat"] + " " + row["lon"] + " " + row["data"] + " " + dis.ToString() + "\n" ;
+						if( j <= 3 )
+						{
+							toSpeak = toSpeak + "Number " + j.ToString() + " " + row["data"] + "\n" ;
+							j++;
+						}
 					}
 					ans.text = finalAns ;
+					tts.convert( toSpeak ) ;
 					//Debug.Log(snapshot);
 				}
 			});

@@ -1,10 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/geoShow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/capture.cs">
     <Files>
-      <File FileName="Assets/geo.cs" Line="59" Column="56" />
-      <File FileName="Assets/geoShow.cs" Line="60" Column="30" />
-      <File FileName="Assets/todoShow.cs" Line="41" Column="3" />
+      <File FileName="Assets/capture.cs" Line="62" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

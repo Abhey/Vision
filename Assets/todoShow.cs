@@ -13,7 +13,8 @@ public class todoShow : MonoBehaviour {
 	public Text gpsText;
 	public float lat;
 	public float lon;
-	public Button b; 
+	public Button b;
+	public textToSpeechVision tts;
 	void Start () {
 		UnityEngine.UI.Button btn = b.GetComponent<UnityEngine.UI.Button> ();
 		btn.onClick.AddListener(check);
@@ -39,7 +40,8 @@ public class todoShow : MonoBehaviour {
 		Input.location.Stop();
 
 		//Display to-do here.
-		string ans = "To-Do at this location\n" ;
+		string ans = "Your personal notes at this location\n" ;
+		string toSpeak = "Here are some of your personal notes at this location\n";
 		if (File.Exists (Application.persistentDataPath + "/newToDoList.dat")) {
 			FileStream file = File.Open (Application.persistentDataPath + "/newToDoList.dat", FileMode.Open);
 			BinaryFormatter bf = new BinaryFormatter ();
@@ -48,16 +50,20 @@ public class todoShow : MonoBehaviour {
 			string[] lats = res.lat.Split ('~');
 			string[] lons = res.lon.Split ('~');
 			string[] vals = res.val.Split ('~');
-			int i;
+			int i , j = 1 ;
 			for (i = 0; i < res.number; i++) {
+				if (j <= 3) {
+					toSpeak = toSpeak + "Number " + j.ToString () + " " + vals [i] + "\n"; 
+					j++;
+				}
 				float lat2 = float.Parse( lats[i] , CultureInfo.InvariantCulture.NumberFormat);
 				float lon2 = float.Parse( lons[i] , CultureInfo.InvariantCulture.NumberFormat);
 				float dis = Calc( lat , lon , lat2 , lon2 ) ;
 				ans = ans + lats [i] + " " + lons [i] + " " + vals [i] + " " + dis.ToString() + "\n" ;
 			}
-
 		}
 		debugText.text = ans;
+		tts.convert (toSpeak);
 	}
 
 	public float Calc(float lat1, float lon1, float lat2, float lon2)

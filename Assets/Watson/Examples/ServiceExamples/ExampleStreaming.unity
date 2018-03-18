@@ -860,6 +860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   b: {fileID: 722695004}
+  tts: {fileID: 1759740881}
   ObjectText: {fileID: 1238958158}
   g1: {fileID: 1387759864}
   g2: {fileID: 278297820}
@@ -1548,6 +1549,7 @@ MonoBehaviour:
   lat: 0
   lon: 0
   b: {fileID: 716365839}
+  tts: {fileID: 1759740881}
 --- !u!4 &1046411559
 Transform:
   m_ObjectHideFlags: 0
@@ -1589,6 +1591,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   b: {fileID: 723249757}
+  I: {fileID: 2046521523}
+  gpsText: {fileID: 273548150}
 --- !u!224 &1110391729
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2530,6 +2534,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4107a13db23164ca5b7f571baa5770a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b: {fileID: 106057417}
+  ans: {fileID: 1369719380}
+  gpsText: {fileID: 273548150}
+  tts: {fileID: 1759740881}
+--- !u!1 &1759740880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1759740882}
+  - component: {fileID: 1759740881}
+  m_Layer: 0
+  m_Name: textToSpeechVision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1759740881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1759740880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945aecb93c53e4b5f970f9279fa1e22b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1759740882
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1759740880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 556.1056, y: 234.64049, z: -9.032098}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1799675920
 GameObject:
   m_ObjectHideFlags: 0
