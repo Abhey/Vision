@@ -17,6 +17,7 @@ public class buttonController : MonoBehaviour {
 	public Text t2;
 	public Text t3;
 	public Text t4;
+	public Text t5;
 	public GameObject I;
 	void Start () {
 		b3.SetActive (false);
@@ -27,6 +28,7 @@ public class buttonController : MonoBehaviour {
 		t2.text = "";
 		t3.text = "";
 		t4.text = "";
+		t5.text = "";
 		I.SetActive (false);
 	}
 
@@ -68,6 +70,7 @@ public class buttonController : MonoBehaviour {
 		t2.text = "";
 		t3.text = "";
 		t4.text = "";
+		t5.text = "";
 		I.SetActive (false);		
 	}
 }

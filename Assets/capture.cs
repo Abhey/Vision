@@ -15,6 +15,7 @@ public class capture : MonoBehaviour {
 	public UnityEngine.UI.Button b;
 	string toSpeak = "The object is.\n" ;
 	public textToSpeechVision tts;
+	public Text wiki;
 	// Use this for initialization
 	void Start () {
 		UnityEngine.UI.Button btn = b.GetComponent<UnityEngine.UI.Button> ();
@@ -48,6 +49,7 @@ public class capture : MonoBehaviour {
 		var classes = N ["images"] [0] ["classifiers"] [0] ["classes"];
 		string ans = classes [0] ["class"];
 		ObjectText.text = ans ;
+		Debug.Log (ans);
 		toSpeak = toSpeak + ans + "\n";
 		translate ();
 		getDescription (ans);
@@ -65,6 +67,7 @@ public class capture : MonoBehaviour {
 		var json = JSON.Parse (data);
 		Debug.Log (json.ToString ());
 		Debug.Log( json["query"]["pages"][0]["extract"].ToString() ) ;
+		wiki.text = json ["query"] ["pages"] [0] ["extract"].ToString ();
 	}
 
 	private void OnFail(RESTConnector.Error error, Dictionary<string, object> customData)
@@ -120,8 +123,10 @@ public class capture : MonoBehaviour {
 		string res = customData ["json"].ToString() ;
 		var N = JSON.Parse (res);
 		string ans = N ["translations"] [0] ["translation"];
+		Debug.Log (ans);
 		TranslatedText.text = ans ;
 		toSpeak = toSpeak + "And its translation in spanish is.\n" + ans + "\n";
+		toSpeak = toSpeak + "And here is the description for you.\n";
 		tts.convert (toSpeak);
 	}
 

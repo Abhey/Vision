@@ -2,7 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/capture.cs">
     <Files>
-      <File FileName="Assets/capture.cs" Line="62" Column="1" />
+      <File FileName="Assets/buttonController.cs" Line="50" Column="24" />
+      <File FileName="Assets/capture.cs" Line="126" Column="19" />
+      <File FileName="Assets/textToSpeechVision.cs" Line="55" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
