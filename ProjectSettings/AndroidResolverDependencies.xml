@@ -1,0 +1,11 @@
+<dependencies>
+  <packages>
+    <package>com.google.android.gms:play-services-base:11.8.0</package>
+    <package>com.google.firebase:firebase-app-unity:4.4.3</package>
+    <package>com.google.firebase:firebase-auth:11.8.0</package>
+    <package>com.google.firebase:firebase-auth-unity:4.4.3</package>
+    <package>com.google.firebase:firebase-common:11.8.0</package>
+    <package>com.google.firebase:firebase-core:11.8.0</package>
+  </packages>
+  <files />
+</dependencies>

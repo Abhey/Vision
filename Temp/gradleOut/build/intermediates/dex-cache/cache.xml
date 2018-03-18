@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/Avishek/Jarvis/Temp/gradleOut/Firebase/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="40ff3be403f28768b5e51eb3a76547170dd88e95">
+        <dex dex="/Users/Avishek/Jarvis/Temp/gradleOut/build/intermediates/pre-dexed/release/classes_6b75c29bb21f23c4862fbf5b1a254786da4bc639.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Avishek/Jarvis/Temp/gradleOut/libs/unity-classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2d302418aa3482b8db770278260340aed47dd37a">
+        <dex dex="/Users/Avishek/Jarvis/Temp/gradleOut/build/intermediates/pre-dexed/release/unity-classes_984186715539a7f535c406f2acf8ca162d0e91b8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Avishek/Jarvis/Temp/gradleOut/libs/Vuforia.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="be3db5d282d7094986c342631085ca4d84c02603">
+        <dex dex="/Users/Avishek/Jarvis/Temp/gradleOut/build/intermediates/pre-dexed/release/Vuforia_4dee86530328edec80412c66f65c161be5d6d236.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Avishek/Jarvis/Temp/gradleOut/libs/VuforiaUnityPlayer.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="95f5205a17a7546c265d4a27d1e6f8be7b6f3f03">
+        <dex dex="/Users/Avishek/Jarvis/Temp/gradleOut/build/intermediates/pre-dexed/release/VuforiaUnityPlayer_759d8e35f7cc096db7624d57dbe6f13ad9d7819b.jar" />
+    </item>
+
+</items>

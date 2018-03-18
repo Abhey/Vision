@@ -9,12 +9,33 @@ public class animationController : MonoBehaviour {
 		anim = this.GetComponent<Animator> ();
 	}
 	
-	void Update () {
+	/*void Update () {
 		float vertical = Input.GetAxis ("Vertical");
 
 		if (vertical > 0)
 			anim.SetInteger ("state", 1);
 		else if(vertical < 0)
 			anim.SetInteger ("state", 2);		
+	}*/
+
+	public void idle()
+	{
+		anim.SetInteger ("state", 0);
+
+	}
+	public void talk()
+	{
+		anim.SetInteger ("state", 2);
+	}
+
+	public void dance()
+	{
+		anim.SetInteger ("state", 1);	
+	}
+
+	public void bhaukaal()
+	{
+		anim.SetInteger("state",3);
 	}
 }
+

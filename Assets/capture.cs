@@ -63,7 +63,7 @@ public class capture : MonoBehaviour {
 
 			filePath = Application.persistentDataPath + "/image.png";
 			ScreenCapture.CaptureScreenshot ("/image.png");
-			yield return new WaitForSeconds(1.5f);
+			yield return new WaitForSeconds(2.5f);
 			imageByteArray = File.ReadAllBytes(filePath);
 
 		} else {
@@ -75,7 +75,6 @@ public class capture : MonoBehaviour {
 		}
 		g1.SetActive (true);
 		g2.SetActive (true);
-
 		Log.Debug("ExampleVisualRecognition.Examples()", "Attempting to get classify by webcam.");
 		if (!_visualRecognition.Classify(OnClassifyGet, OnFail , imageByteArray , "image/png"))
 			Log.Debug("ExampleVisualRecognition", "Classify image failed!");
