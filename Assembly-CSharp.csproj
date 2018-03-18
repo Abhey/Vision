@@ -61,6 +61,7 @@
      <Compile Include="Assets\geo.cs" />
      <Compile Include="Assets\geoShow.cs" />
      <Compile Include="Assets\PlaySound.cs" />
+     <Compile Include="Assets\saved.cs" />
      <Compile Include="Assets\SimpleJSON.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
